@@ -1,0 +1,56 @@
+{
+  "manifest_version": 3,
+  "name": "4chan Thread Gallery",
+  "version": "1.0.0",
+  "description": "Browse every image in a 4chan thread as a gallery and download images individually, selected, or as a ZIP.",
+  "minimum_chrome_version": "116",
+  "permissions": [
+    "downloads",
+    "offscreen",
+    "scripting",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "*://boards.4chan.org/*",
+    "*://boards.4channel.org/*",
+    "https://i.4cdn.org/*",
+    "https://is2.4chan.org/*",
+    "https://is2.4channel.org/*",
+    "https://i.4pcdn.org/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Toggle 4chan thread gallery",
+    "default_icon": {
+      "128": "icons/4chan-thread-gallery-128.png"
+    }
+  },
+  "icons": {
+      "128": "icons/4chan-thread-gallery-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://boards.4chan.org/*",
+        "*://boards.4channel.org/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "gallery.css"
+      ],
+      "matches": [
+        "*://boards.4chan.org/*",
+        "*://boards.4channel.org/*"
+      ]
+    }
+  ]
+}
